@@ -209,8 +209,9 @@
                     result.appendChild(totalDiv)
 
                     //Appending Subtotal
-                    var subtotalDiv = cart.querySelector('tr:last-of-type');
+                    var subtotalDiv = cart.querySelector('tr:nth-last-of-type(3)');
                     var subtotalAmount = subtotalDiv.querySelector('td:last-of-type').innerText
+                    console.log(subtotalAmount);
                     var createSubDiv = document.createElement('div')
                     var appendTotalAmount = document.createTextNode("Subtotal: " + subtotalAmount)
                     createSubDiv.appendChild(appendTotalAmount)
