@@ -1,0 +1,256 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cart Scraping - UpSellit Code Challenge</title>
+
+    <link rel="stylesheet" href="styles/bootstrap-4.1.2.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="styles/cart-scraping.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="d-flex flex-column h-100">
+        <div id="app-header" class="row d-flex no-gutters justify-content-center align-items-start">
+            <div id="app-header-menu" class="col-11">
+                <a href="index.html" class="no-decoration">
+                    <img src="images/upsellit-logo.png" width="28" height="28" title="UpSellit" /> Cart Scraping - UpSellit Code Challenge</a>
+            </div>
+            <div id="app-header-buttons" class="col-1">
+                <a href="index.html">
+                    <button class="btn btn-primary">Home</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="row flex-grow h-100 no-gutters justify-content-center align-items-start">
+            <div id="content" class="col-9 h-100">
+                <h2>Your Shopping Cart</h2>
+                <br />
+                <div style="display: inline-block; vertical-align: top;">
+                    <table id="cart">
+                        <tr class="header">
+                            <td>Item</td>
+                            <td>Price</td>
+                            <td>Quantity</td>
+                            <td>Subtotal</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="http://www.acehardware.com/product/index.jsp?productId=35555736" target="_blank" class="no-decoration">
+                                    <img src="images/cart-product-vice.jpg" /> Craftsman Steel Bench Vise</a>
+                            </td>
+                            <td class="right">$99.99 USD</td>
+                            <td class="center">
+                                <input type="number" size="3" value="1" />
+                            </td>
+                            <td class="right bold">$99.99</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="http://www.acehardware.com/product/index.jsp?productId=3471744" target="_blank" class="no-decoration">
+                                    <img src="images/cart-product-storage.jpg" /> Rubbermaid Roughneck Storage Box - 25 gal.</a>
+                            </td>
+                            <td class="right">$18.99 USD</td>
+                            <td class="center">
+                                <input type="number" size="3" value="6" />
+                            </td>
+                            <td class="right bold">$113.94</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="http://www.acehardware.com/product/index.jsp?productId=61121416" target="_blank" class="no-decoration">
+                                    <img src="images/cart-product-ac.jpg" /> Perfect Aire Window Air Conditioner</a>
+                            </td>
+                            <td class="right">$999.99 USD</td>
+                            <td class="center">
+                                <input type="number" size="3" value="2" />
+                            </td>
+                            <td class="right bold">$1,999.98</td>
+                        </tr>
+                        <tr class="footer">
+                            <td colspan="3" class="right bold">Promo Code</td>
+                            <td class="right bold">
+                                <input type="text" id="promo-code" size="10" />
+                            </td>
+                        </tr>
+                        <tr class="footer">
+                            <td colspan="3" class="right bold">Rewards!</td>
+                            <td class="right bold">-$10.00</td>
+                        </tr>
+                        <tr class="footer">
+                            <td colspan="3" class="right bold">Subtotal</td>
+                            <td class="right bold">$2,203.91</td>
+                        </tr>
+                        <tr class="footer">
+                            <td colspan="3" class="right bold">Shipping</td>
+                            <td class="right bold">$8.95</td>
+                        </tr>
+                        <tr class="footer">
+                            <td colspan="3" class="right bold">Total</td>
+                            <td class="right bold">$2,212.86</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <button id='btn' class="btn btn-success">Scrape Values</button>
+                </div>
+                <div class="result">Results here ...</div>
+            </div>
+            <div id="panel-right" class="col-3 h-100">
+                <div class="panel-right-header">Instructions</div>
+                <div class="panel-right-content">
+                    We typically need to know the contents of a visitor's shopping cart, so we scrape the Cart Page and store the values. The
+                    Shopping Cart on the left represents a fairly common Cart Page.
+                    <br />
+                    <br /> First, add code to the
+                    <code>&lt;script&gt;</code> tag on this page to do the following when the "Scrape Values" button is clicked:
+                    <ol>
+                        <li>Create a custom "cart" object containing:
+                            <ul>
+                                <li>products (array of objects with these properties):
+                                    <ul>
+                                        <li>name (string)</li>
+                                        <li>link (URL of the product page)</li>
+                                        <li>image (URL of the product's thumbnail image)</li>
+                                        <li>price (decimal)</li>
+                                        <li>quantity (integer)</li>
+                                    </ul>
+                                </li>
+                                <li>subtotal (decimal)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    Next, overwrite the contents of the green
+                    <code>&lt;div&gt;</code> that reads "Results here ..." with:
+                    <div class="panel-right-example">
+                        Total Items: [the number of items in the cart]
+                        <br /> Subtotal: [cart subtotal amount, formatted as a currency]
+                        <br /> Most Expensive Item: [name and price of the most expensive product]
+                        <br /> Least Expensive Item: [name and price of the least expensive product]
+                    </div>
+                </div>
+                <div class="panel-right-header">Concepts</div>
+                <div class="panel-right-content">
+                    <ul>
+                        <li>DOM element selection</li>
+                        <li>JavaScript objects</li>
+                        <li>Event wiring and handling</li>
+                        <li>Sorting</li>
+                        <li>Type conversion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/min/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/min/bootstrap-4.1.2.min.js"></script>
+    <script type="text/javascript">
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            scrapeData();
+        });
+
+        var toggleClick = null;
+
+        function scrapeData() {
+            var scrapeButton = document.getElementById('btn')
+            var cart = document.getElementById('cart');
+            scrapeButton.addEventListener("click", function () {
+                toggleClick = 1 - toggleClick;
+                if (toggleClick === 0) {
+                    var result = document.querySelector('.result')
+                    result.innerHTML = ''
+                    var resultText = document.createTextNode('Results here...')
+                    result.appendChild(resultText)
+                    return;
+                }
+                else {
+                    var result = document.querySelector('.result')
+                    result.style.display = 'inline-block';
+
+                    var cartObject = {
+                        products: [],
+                        subtotal: 'number'
+                    }
+                    var firstCartObject = {}
+                    var shoppingCart = cart.querySelectorAll('tr:not(.header):not(.footer)');
+                    var priceArray = []
+                    for (var i = 0; i < shoppingCart.length; i++) {
+                        var singleCartObject = {}
+                        singleCartObject.name = shoppingCart[i].children[0].innerText
+                        singleCartObject.price = shoppingCart[i].children[1].innerText
+                        singleCartObject.quantity = shoppingCart[i].children[2].children[0].value
+                        singleCartObject.subtotal = shoppingCart[i].children[3].innerText;
+                        singleCartObject.link = shoppingCart[i].children[0].firstElementChild.attributes[0].value;
+                        singleCartObject.image = shoppingCart[i].children[0].firstElementChild.firstElementChild.attributes[0].nodeValue
+                        cartObject.products.push(singleCartObject)
+                        var currencyPrice = shoppingCart[i].children[1].innerText
+                        var parsedNumber = parseFloat(currencyPrice.replace(/[^0-9.]/g, ""))
+                        priceArray.push(parsedNumber);
+                    }
+
+
+
+                    //Appending total items in cart
+                    var totalItems = shoppingCart.length
+                    console.log(cartObject)
+                    var result = document.querySelector('.result')
+                    var totalDiv = document.createElement('div')
+                    var appendTotalItems = document.createTextNode("Total items: " + totalItems)
+                    totalDiv.appendChild(appendTotalItems)
+                    var result = document.querySelector('.result')
+                    result.appendChild(totalDiv)
+
+                    //Appending Subtotal
+                    var subtotalDiv = cart.querySelector('tr:last-of-type');
+                    var subtotalAmount = subtotalDiv.querySelector('td:last-of-type').innerText
+                    var createSubDiv = document.createElement('div')
+                    var appendTotalAmount = document.createTextNode("Subtotal: " + subtotalAmount)
+                    createSubDiv.appendChild(appendTotalAmount)
+                    result.appendChild(createSubDiv)
+
+
+                    //Appending most expensive item
+                    var mostExpensive = Math.max(...priceArray)
+                    var expensiveDiv = document.createElement('div');
+                    var expensiveTextNode = document.createTextNode('Most Expensive Item: ' + mostExpensive);
+                    expensiveDiv.appendChild(expensiveTextNode);
+                    result.appendChild(expensiveDiv);
+
+
+
+                    //Appending least expensive item
+                    var leastExpensive = Math.min(...priceArray)
+                    var leastExpensiveDiv = document.createElement('div');
+                    var leastExpensiveTextNode = document.createTextNode("Least Expensive Item: " + leastExpensive);
+                    leastExpensiveDiv.appendChild(leastExpensiveTextNode)
+                    result.appendChild(leastExpensiveDiv);
+                }
+            })
+        }
+
+
+
+
+
+
+
+ // firstCartObject.name = firstRow.querySelector('a').innerText;
+                // firstCartObject.link = firstRow.querySelector('a').getAttribute('href');
+                // firstCartObject.image = firstRow.querySelector('img').getAttribute('src');
+                // firstCartObject.price = firstRow.querySelector('.right:not(.bold)').innerText;
+                // firstCartObject.quantity = firstRow.querySelector('input').value;
+                // cartObject.products.push(firstCartObject)
+                // console.log(cartObject.products);
+
+    </script>
+</body>
+
+</html>

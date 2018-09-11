@@ -1,0 +1,24 @@
+#cart td {
+    padding: 6px;
+    border: 1px solid #AAA;
+    background-color: #FFF;
+    vertical-align: top;
+    color: #222;
+}
+
+#cart tr.header td {
+    font-weight: bold;
+    background-color: #C00;
+    border: 1px solid #A00;
+    color: #FFF;
+}
+
+#cart td img {
+    max-width: 80px;
+    max-height: 80px;
+    vertical-align: top;
+}
+
+#cart tr.footer td {
+    background-color: #DDD;
+}
